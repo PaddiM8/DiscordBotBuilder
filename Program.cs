@@ -4,9 +4,22 @@ namespace DiscordBotBuilder
 {
     class Program
     {
-        static void Main(string[] args)
+        public static string OpenProject { get; set; }
+        public static string OpenCommand { get; set; }
+
+        static void Main()
         {
-            Console.WriteLine("Hello World!");
+            FileManagement.InitializeFileSystem(); //Create folders and other files
+
+            var exit = false;
+            while (!exit) //Infinite loop until exit
+            {
+                Console.Write(OpenProject + " " + OpenCommand + "> ");
+                var input = Console.ReadLine();
+
+                Commands.DoCommand(input);
+            }
         }
+
     }
 }
